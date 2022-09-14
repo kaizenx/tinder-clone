@@ -7,17 +7,22 @@ import {
   Link
 } from "react-router-dom";
 import TinderCards from './Pages/TinderCards';
-import Chat from './Pages/Chat';
+import Chats from './Pages/Chats';
+import ChatScreen from './Pages/ChatScreen';
+import SwipeButtons from './Pages/SwipeButtons';
 function App() {
   return (
     <div className="App">
 
       {/* Header */}
-      <Header />  
+      
       <Router>
+
         <Routes>
-          <Route path="/chat" element={<Chat/>}/>
-          <Route path="/" element={<TinderCards/>}/>
+          <Route path="/chat/:person" element={<><Header backButton="/chat" /><ChatScreen/></>}/>
+          <Route path="/chat" element={<><Header backButton="/" /><Chats/></>}/>
+          <Route path="/" element={<><Header /><TinderCards/><SwipeButtons/></>}/>
+          
         </Routes>
         {/* Tinder Cards */}
         {/* Buttons below tinder cards */}

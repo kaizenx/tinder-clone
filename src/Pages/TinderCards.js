@@ -9,10 +9,15 @@ const TinderCards = () => {
 
   useEffect(() => {
     // with listener
-    const q = query(collection(database, "people"));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {;
+    const peopleQuery = query(collection(database, "people"));
+    const unsubscribe = onSnapshot(peopleQuery, (querySnapshot) => {
       setPeople(querySnapshot.docs.map(doc => doc.data()))
     });
+
+    return () => {
+      // clean up
+      unsubscribe();
+    }
    
     // no listener
     // let isSubscribed = true;
@@ -29,11 +34,10 @@ const TinderCards = () => {
   },[]);
 
 
-  // setPeople([...people, 'sonny', 'qazi'])
+  // setPeople([...people, 'sonny', 'qazi']) ... means preserve array
 
   return (
     <div>
-      <h1>Tinder Cards</h1>
 
       <div className="tinderCards__cardContainer ">
         {people.map((person) =>(

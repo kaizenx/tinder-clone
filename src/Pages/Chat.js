@@ -1,9 +1,22 @@
-import React from "react";
+import React from 'react'
+import './Chat.css'
+import { Avatar } from '@mui/material'
+import { Link } from 'react-router-dom'
 
-const Chat = () => {
+const Chat = ({name, message, timestamp, profilePic}) => {
   return (
-    <h1> This is the chat page</h1>
-  );
+    <Link to={`/chat/${name}`}>
+      <div className='chat'>
+      <Avatar className='chat__image' src={profilePic} />
+
+      <div className='chat__details'>
+          <h2>{name}</h2>
+          <p>{message}</p>
+        </div>
+        <p className='chat__timestamp'>{timestamp}</p>
+      </div>
+    </Link>
+  )
 }
 
-export default Chat;
+export default Chat
